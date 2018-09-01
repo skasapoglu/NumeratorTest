@@ -23,7 +23,7 @@ Partitions are derived according to count of subsets
 	
 	Partition-1	   0 1
 	Partition-2	   2 3 4 5 6 8
-	Partition-3    7 9 
+	Partition-3        7 9 
 					
 So test inputs are selected with choosing every possible permutations of each partition 
 plus combination of different partitions
