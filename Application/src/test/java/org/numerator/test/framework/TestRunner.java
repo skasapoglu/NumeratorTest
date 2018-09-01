@@ -41,8 +41,7 @@ public class TestRunner {
 	 * Counts all of the possible combinations
 	 * 
 	 * @return number of possible combinations for given entry
-	 * @throws TestFrameworkException
-	 *             if no element exists
+	 * @throws TestFrameworkException if no element exists
 	 */
 	public static int totalPopulatedElements() {
 		int result = 0;
@@ -62,8 +61,7 @@ public class TestRunner {
 	 * Calculates the possible combinations with multiplying the Cartesian of each
 	 * numbers.
 	 * 
-	 * @param entry
-	 *            the input entry
+	 * @param entry the input entry
 	 * @return the possible combination count with given entry
 	 */
 	public static int totalExpectedCombinations(String entry) {
@@ -82,8 +80,7 @@ public class TestRunner {
 	 * Verifies if the generated test results are matched with the calculated
 	 * results
 	 * 
-	 * @param testResults
-	 *            given list of combinations
+	 * @param testResults given list of combinations
 	 * @return {@True} if all the elements match {@False} otherwise
 	 */
 	public static boolean isExactMatch(List<String> testResults) {
@@ -98,8 +95,7 @@ public class TestRunner {
 	/**
 	 * Verifies if the elements generated as test results are unique
 	 * 
-	 * @param testResults
-	 *            given list of combinations
+	 * @param testResults given list of combinations
 	 * @return {@True} if all elements unique {@False} otherwise
 	 */
 	public static boolean hasAllUniqueItems(List<String> testResults) {
@@ -116,7 +112,7 @@ public class TestRunner {
 	 * Verifies if all the alphabet elements including "0" & "1" are exists
 	 * 
 	 * @param testResults
-	 * @return
+	 * @return {@link True} if all the elements have the alphabetic characters
 	 */
 	public static boolean isAllAlphabetical(List<String> testResults) {
 
