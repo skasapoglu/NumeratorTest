@@ -122,9 +122,9 @@ public class TestRunner {
 
 		List<String> alphabets = TestUtil.getAlphabets();
 
-		testResults.removeIf(alphabets::contains);
+		alphabets.removeIf(testResults::contains);
 
-		return testResults.size() == 0;
+		return alphabets.size() == 0;
 	}
 
 }
