@@ -1,0 +1,124 @@
+/***********************************
+Author Sabahattin Kasapoglu
+/***********************************
+Below is the test descriptions document for the test cases planned to be implemented 
+for the feature "NumTest" for calculating the different possible combinations of  
+alphabets for the numeric that you see in a telephone dial pad. 
+
+Data Providers
+Below data providers will be used in test scenarios as inputs and the technique to determine such
+test data is given as explanation
+
+[SelectedPartitions]
+There is unlimited possible conditions with the entries but in order to test I select my test inputs
+with Equivalence Partitioning method, since I expect that each member of the subsets causes the same 
+kind of processing to occur.
+
+Given Input
+{ { "0" }, { "1" }, { "A", "B", "C" }, { "D", "E", "F" }, { "G", "H", "I" },
+			{ "J", "K", "L" }, { "M", "N", "O" }, { "P", "Q", "R", "S" }, { "T", "U", "V" }, { "W", "X", "Y", "Z" } };
+we can drive a partition table 
+
+Partitions are derived according to count of subsets
+	
+	Partition-1	   0 1
+	Partition-2	   2 3 4 5 6 8
+	Partition-3    7 9 
+					
+So test inputs are selected with choosing every possible permutations of each partition 
+plus combination of different partitions
+
+ - Selected possible permutation of Partition-1 2 elements
+	P(2,1) {"1"} 
+	P(2,2) {"00"}  not selecting "11" "0" and "01" here because expected behaviour same
+	
+ - Selected possible permutation of Partition-2 6 elements
+	P(6,1) {"2"} 
+	P(6,2) {"34"}
+	P(6,3) {"567"}
+	P(6,4) {"2458"} 
+	P(6,5) {"34568"}
+	P(6,6) {"234568"}
+
+ - Selected possible permutation of Partition-3 2 elements
+	P(2,1) {"9"} 
+	P(2,2) {"77"} -- not selecting "7" "99" "79" here because expected behaviour same
+	
+ - Possible subset for combination from each partitions (ensuring each partition's entry is used at least once)
+	{"027"} - {"139"} - {"047"} - {"159"} - {"067"} - {"189"}
+	
+	
+[AnyNumericEntries]
+This provider will include all possible numeric on telephone pad
+	{"0"} {"1"} {"2"} {"3"} {"4"} {"5"} {"6"} {"7"} {"8"} {"9"} 
+
+
+[AnyNonNumericEntries]
+For the entries following cases will be used as test input
+    {"1@23"} {"1 23"} {"-127"}
+
+	
+Scenario-1 Matched Elements - HIGH
+This test will verify that the given [SelectedPartitions] each entry will result expected matched elements.
+
+Steps 
+	GIVEN Each entry in [SelectedPartitions] as input
+	WHEN  NumTest Generator runs
+	THEN  Each entry returns a combinations with expected results
+
+Expected Output
+	For Cartesian combination build a tree structure for every possible entry input number
+	via calculating the possible combination and checking all single item matches the value with
+	the application generates
+	
+	
+Scenario-2 Unique Elements - HIGH
+This test will verify that the given [SelectedPartitions] each entry will result unique expected elements.
+
+Steps 
+	GIVEN Each entry in [SelectedPartitions] as input
+	WHEN  NumTest Generator runs
+	THEN  Each entry returns a combination with unique set of results
+	
+	
+Scenario-3 All Alpha Chars Exists - HIGH
+This test will verify if each number selected all alphabetic characters can be created
+
+Steps	
+	GIVEN Each entry in [AnyNumericEntries] as input one by one
+	WHEN  NumTest Generator runs
+	THEN  All alphabet chars are at least once occur in combination set 
+
+	
+Scenario-4 Number of Combinations - MEDIUM
+This test is simply a smoke test to verify that given set of different entries
+has the correct number of return values with the expected ones
+
+Steps
+	GIVEN Each entry in [SelectedPartitions] as input
+	WHEN  NumTest Generator runs
+	THEN  Each entry returns the expected number of combinations 
+	
+Expected Output
+	For Cartesian combination of a given series of Subsets the number 
+	equals to the multiplication of each subsets' size 
+	For example given subsets {1,1} {2,2,3} {4,1,5,2} 
+	number of total combinations = 2 x 3 x 4
+	
+	
+Scenario-5 No Input Edge Case - LOW
+This test will verify the alternative case for the input String.Empty case
+
+Steps
+	GIVEN Empty String as input entry
+	WHEN  NumTest Generator runs
+	THEN  Exceptions thrown
+	
+
+Scenario-6 Non-Numeric Edge Case - LOW
+This test will verify the exceptional case for the input with non-numeric entries
+
+Steps
+	GIVEN Each entry in [AnyNonNumericEntries] String as input entry
+	WHEN  NumTest Generator runs
+	THEN  Exceptions thrown
